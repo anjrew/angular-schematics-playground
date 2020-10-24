@@ -4,8 +4,8 @@
   "description": "A blank schematics",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js", 
-    "execute": "npm run build && schematics .:page --dry-run=false"
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "execute": "npm run build && schematics .:page  --dry-run=false"
   },
   "keywords": [
     "schematics"
@@ -16,6 +16,7 @@
   "dependencies": {
     "@angular-devkit/core": "^10.2.0",
     "@angular-devkit/schematics": "^10.2.0",
+    "@schematics/angular": "^10.2.0",
     "typescript": "~4.0.2"
   },
   "devDependencies": {
