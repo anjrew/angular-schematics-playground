@@ -1,0 +1,13 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "dre-schematics": {
+      "description": "A blank schematic.",
+      "factory": "./dre-schematics/index#dreSchematics"
+    },
+    "page": {
+      "description": "Create a new page with NGRX in the DRE style",
+      "factory": "./page/index#page"
+    }
+  }
+}
