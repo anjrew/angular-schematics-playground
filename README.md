@@ -10,6 +10,9 @@ This repository is a basic Schematic implementation that serves as a starting po
 To see some examples of Angular schematics install @schematics/angular and check in node_modules
 npm i @schematics/angular
 
+
+For a great example on how to use Schematics see this page: https://github.com/BottleRocketStudios/ng-momentum/blob/master/src/scaffold/index.ts#L217-L219 
+
 ### Testing
 
 To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.

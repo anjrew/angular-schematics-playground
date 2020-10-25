@@ -14,6 +14,12 @@
       },
       "x-prompt": "What name would you like to use for the component?"
     },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the simple schematic within.",
+      "visible": false
+     },
     "pageType": {
       "description": "The type of page it is? (Form / Table)",
       "type": "string",
