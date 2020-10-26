@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "PageSchema",
+  "title": "DRE Page Schema",
+  "type": "object",
+  "description": "Generates a new page with NGRX sore folder",
+  "properties": {
+    "name": {
+      "description": "The name of the new component.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the component?"
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the simple schematic within.",
+      "visible": false
+     },
+    "pageType": {
+      "description": "The type of page it is? (Form / Table)",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "enum": [
+        "table",
+        "filter-table",
+        "form"
+      ],
+      "x-prompt": {
+        "message": "What type of page is it?",
+        "type": "list",
+        "items": [
+          { "value": "table",  "label": "Data table / List" },
+          { "value": "filter-table",  "label": "Data table / List with a filter" },
+          { "value": "form", "label": "Form" }
+        ]
+      }
+    },
+    "dataService": {
+      "description": "The name prefix to the data service.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "What is the prefix to the data service?"
+    },
+    "hasEntity": {
+      "description": "Weather this component has an entity.",
+      "type": "boolean",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      },
+      "x-prompt": "Does the page have an entity?"
+    },
+    "moduleName": {
+      "description": "The name of the module to attach to.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 4
+      },
+      "x-prompt": "What is the name of the module to attach to?"
+    }
+  },
+  "required": [
+    "name",
+    "pageType",
+    "dataService",
+    "moduleName"
+  ]
+}
