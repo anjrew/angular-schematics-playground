@@ -18,14 +18,16 @@ import { experimental } from '@angular-devkit/core';
 // import { getWorkspace } from '@schematics/angular/utility/config';
 // import { Path } from '@angular-devkit/core';
 import { parseName } from '@schematics/angular/utility/parse-name'
+import { validateRegularSchema, RegularSchema } from '../helper-functions/helper-functions';
 // import { findModule } from '@schematics/angular/utility/find-module';
 // import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 const stringUtils = { classify, dasherize, capitalize, camelize }
 
-// You don't have to export the function as default. You can also have more than one rule factory
-// per file.
+// You don't have to export the function as default. You can also have more than one rule factory per file.
 export function page(options: PageSchema): Rule {
+
+  validateRegularSchema(options as RegularSchema)
 
   /* Correctly format the options path */
   options.path = options.path ? normalize(options.path) : options.path;
@@ -127,15 +129,6 @@ export function page(options: PageSchema): Rule {
 }
 
 
-export function validateRegularSchema(options: PageSchema) {
-  if (!options.name) {
-    throw new SchematicsException('Option (name) is required.');
-  }
-
-  if (!options.path) {
-    throw new SchematicsException('Option (path) is required.');
-  }
-}
 
 export function getContainingFolderPath(path: string, folder: string) {
   return path.endsWith(folder) ? path : `${path}${folder}`;

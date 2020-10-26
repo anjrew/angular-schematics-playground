@@ -14,11 +14,12 @@ import {
 } from '@angular-devkit/schematics';
 import { classify, dasherize, capitalize, camelize } from '@angular-devkit/core/src/utils/strings';
 import { normalize } from 'path';
-import { PageSchema } from './schema';
+import { LazyModuleSchema } from './schema';
 import { experimental } from '@angular-devkit/core';
 // import { getWorkspace } from '@schematics/angular/utility/config';
 // import { Path } from '@angular-devkit/core';
 import { parseName } from '@schematics/angular/utility/parse-name'
+import { validateRegularSchema } from '../helper-functions/helper-functions';
 // import { findModule } from '@schematics/angular/utility/find-module';
 // import { getWorkspace } from '@schematics/angular/utility/workspace';
 
@@ -26,7 +27,7 @@ const stringUtils = { classify, dasherize, capitalize, camelize }
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function lazyModule(options: PageSchema): Rule {
+export function lazyModule(options: LazyModuleSchema): Rule {
 
   validateRegularSchema(options)
 
@@ -117,16 +118,6 @@ export function lazyModule(options: PageSchema): Rule {
   };
 }
 
-
-export function validateRegularSchema(options: PageSchema) {
-  if (!options.name) {
-    throw new SchematicsException('Option (name) is required.');
-  }
-
-  if (!options.path) {
-    throw new SchematicsException('Option (path) is required.');
-  }
-}
 
 export function getContainingFolderPath(path: string, folder: string) {
   return path.endsWith(folder) ? path : `${path}${folder}`;
