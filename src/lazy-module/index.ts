@@ -26,7 +26,6 @@ const stringUtils = { classify, dasherize, capitalize, camelize }
 // per file.
 export function lazyModule(options: LazyModuleOptions): Rule {
 
-  validateRegularSchema(options)
 
   /* Correctly format the options path */
   options.path = options.path ? normalize(options.path) : options.path;
@@ -34,8 +33,10 @@ export function lazyModule(options: LazyModuleOptions): Rule {
 
   return (tree: Tree, context: SchematicContext) => {
 
- 
+    validateRegularSchema(options)
+
     console.log(`The options are`, options);
+
  
     const workspaceConfigBuffer = tree.read('angular.json');
     if (!workspaceConfigBuffer) {

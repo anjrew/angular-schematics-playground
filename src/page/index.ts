@@ -39,7 +39,6 @@ export function page(options: PageSchema): Rule {
   return (tree: Tree, context: SchematicContext) => {
     
 
-
     const workspaceConfigBuffer = tree.read('angular.json');
     if (!workspaceConfigBuffer) {
       throw new SchematicsException('Could not find Angular workspace configuration');
