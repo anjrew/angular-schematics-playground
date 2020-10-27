@@ -52,9 +52,15 @@ describe('page', async () => {
       'schematics', collectionPath);
 
     appTree = await testRunner.runExternalSchematicAsync(
-      '@schematics/angular', 'workspace', workspaceOptions).toPromise();
-    appTree = await testRunner. runExternalSchematicAsync(
-      '@schematics/angular', 'application', appOptions, appTree).toPromise();
+      '@schematics/angular',
+      'workspace',
+      workspaceOptions).toPromise();
+    
+    appTree = await testRunner.runExternalSchematicAsync(
+      '@schematics/angular',
+      'application',
+      appOptions,
+      appTree).toPromise();
   });
 
 
@@ -101,58 +107,37 @@ describe('page', async () => {
       '/projects/bar/.browserslistrc',
       '/projects/bar/karma.conf.js',
       '/projects/bar/tsconfig.app.json',
-       '/projects/bar/tsconfig.spec.json',
-       '/projects/bar/tslint.json',
-       '/projects/bar/src/favicon.ico',
-       '/projects/bar/src/index.html',
-       '/projects/bar/src/main.ts',
-       '/projects/bar/src/polyfills.ts',
-       '/projects/bar/src/styles.css',
-       '/projects/bar/src/test.ts',
-       '/projects/bar/src/assets/.gitkeep',
-       '/projects/bar/src/environments/environment.prod.ts',
-       '/projects/bar/src/environments/environment.ts',
-       '/projects/bar/src/app/app.module.ts',
-       '/projects/bar/src/app/app.component.css',
-       '/projects/bar/src/app/app.component.html',
-       '/projects/bar/src/app/app.component.spec.ts',
-       '/projects/bar/src/app/app.component.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.css',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.html',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.actions.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.effects.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.facade.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.reducer.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.selectors.ts',
-       '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.state.ts',
-       '/projects/bar/e2e/protractor.conf.js',
-       '/projects/bar/e2e/tsconfig.json',
-       '/projects/bar/e2e/src/app.e2e-spec.ts',
-       '/projects/bar/e2e/src/app.po.ts'
+      '/projects/bar/tsconfig.spec.json',
+      '/projects/bar/tslint.json',
+      '/projects/bar/src/favicon.ico',
+      '/projects/bar/src/index.html',
+      '/projects/bar/src/main.ts',
+      '/projects/bar/src/polyfills.ts',
+      '/projects/bar/src/styles.css',
+      '/projects/bar/src/test.ts',
+      '/projects/bar/src/assets/.gitkeep',
+      '/projects/bar/src/environments/environment.prod.ts',
+      '/projects/bar/src/environments/environment.ts',
+      '/projects/bar/src/app/app.module.ts',
+      '/projects/bar/src/app/app.component.css',
+      '/projects/bar/src/app/app.component.html',
+      '/projects/bar/src/app/app.component.spec.ts',
+      '/projects/bar/src/app/app.component.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.css',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.html',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good-schema-name/good-schema-name.component.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.actions.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.effects.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.facade.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.reducer.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.selectors.ts',
+      '/projects/bar/src/app/modules/lazy-loaded-modules/good-schema-module/components/pages/good schema name/store/good-schema-name.state.ts',
+      '/projects/bar/e2e/protractor.conf.js',
+      '/projects/bar/e2e/tsconfig.json',
+      '/projects/bar/e2e/src/app.e2e-spec.ts',
+      '/projects/bar/e2e/src/app.po.ts'
     ]);
   });
-
-
-  //   it('works', async () => {
-
-  //     const tree = await testRunner.runSchematicAsync('page', {
-  //         name: "test"
-  //     }, appTree).toPromise();
-
-  //     //[see assertions below]
-  //       expect(tree.files).toEqual([
-  //         "/README.md",
-  //         "/angular.json",
-  //         "/package.json",
-  //         "/tsconfig.json",
-  //         "/tslint.json",
-  //         "/.editorconfig",
-  //         "/.gitignore",
-  //         "/projects/bar/src/app/test/test.spec.ts",
-  //         "/projects/bar/src/app/test/test.ts",
-  //     ]);
-  //   });
 
 });
 
