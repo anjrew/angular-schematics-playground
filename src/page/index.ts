@@ -18,7 +18,9 @@ import { experimental } from '@angular-devkit/core';
 // import { getWorkspace } from '@schematics/angular/utility/config';
 // import { Path } from '@angular-devkit/core';
 import { parseName } from '@schematics/angular/utility/parse-name'
-import { validateRegularSchema, RegularSchema } from '../helper-functions/helper-functions';
+import { validateRegularSchema, RegularSchema } from '../utils/helper-functions/helper-functions';
+import { findModuleFromOptions } from '@schematics/angular/utility/find-module';
+import { addDeclarationToNgModule } from '../utils/ng-module-utils';
 // import { findModule } from '@schematics/angular/utility/find-module';
 // import { getWorkspace } from '@schematics/angular/utility/workspace';
 
@@ -31,22 +33,12 @@ export function page(options: PageSchema): Rule {
 
   /* Correctly format the options path */
   options.path = options.path ? normalize(options.path) : options.path;
+  options.module = options.module || '';
 
 
   return (tree: Tree, context: SchematicContext) => {
+    
 
-    // const workspace = getWorkspace(tree)
-    // const projectName = options.project || Object.keys(workspace.projects)[0];
-    // const project = getProject(workspace, projectName)
-    // const path = buildDefaultPAth(project as any)
-    // const rootPath = project.root as Path;
-
-    // const sourcePath = join(project.root as Path, 'src');
-    // const appPath = join(sourcePath as Path, 'app');
-    console.log(`The options are`, options);
-    // console.log(`The tree is `, tree);
-    // console.log(`The context is`, context);
-    console.log('DIR', __dirname);
 
     const workspaceConfigBuffer = tree.read('angular.json');
     if (!workspaceConfigBuffer) {
@@ -55,36 +47,26 @@ export function page(options: PageSchema): Rule {
     
     // convert workspace to string
     const workspaceConfigContent = workspaceConfigBuffer.toString();
-    console.log('workspaceConfig', workspaceConfigContent)
 
     // parse workspace string into JSON object
     const workspace: experimental.workspace.WorkspaceSchema = JSON.parse(workspaceConfigContent);
     if (!options.project) {
       options.project = workspace.defaultProject as string;
     }
-    // console.log('The workspace is', workspace);
-
-    // const workspace = await getWorkspace();
 
     const projectName = options.project as string;
-    console.log('The projectName is', projectName);
     
     const project = workspace.projects[projectName];
-    console.log('The project is', project);
 
     const projectType = project.projectType === 'application' ? 'app' : 'lib';
-    console.log('projectType', projectType);
 
-    console.log('DIR', __dirname);
-    const path  = `${project.sourceRoot}/${projectType}`;
-    console.log('path', path);
+    const path = `${project.sourceRoot}/${projectType}`;
+    
+    const module = options.module || findModuleFromOptions(tree, options) || '';
     
     // const parsed = parseName(path, options.name)
-    const parsed = parseName(path, `modules/lazy-loaded-modules/${dasherize(options.moduleName)}/components/pages/${options.name}`)
-    console.log('parsed', parsed);
+    const parsed = parseName(path, `modules/lazy-loaded-modules/${dasherize(module as string)}/components/pages/${options.name}`)
     
-
-    options.name = parsed.name;
 
     if (options.path === undefined) {
       options.path = `${project.sourceRoot}/${projectType}`;
@@ -119,7 +101,9 @@ export function page(options: PageSchema): Rule {
         // project:
       }),
 
-      mergeWith(templateSource)
+      mergeWith(templateSource),
+
+      addDeclarationToNgModule(options, options?.export || false)
 
     ])(tree, context) as Tree
 

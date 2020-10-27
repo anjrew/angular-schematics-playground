@@ -27,7 +27,7 @@
         "$source": "argv",
         "index": 2,
         "value":  false
-      },
+      }
     }
   },
   "required": [

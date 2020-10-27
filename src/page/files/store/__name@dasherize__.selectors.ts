@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { select<%= classify(moduleName) %>Module } from '../../../../store/<%= dasherize(moduleName) %>-module.selectors';
-import { <%= classify(moduleName) %>State } from '../../../../store/<%= dasherize(moduleName) %>-module.state';
+import { select<%= classify(module) %>Module } from '../../../../store/<%= dasherize(module) %>-module.selectors';
+import { <%= classify(module) %>State } from '../../../../store/<%= dasherize(module) %>-module.state';
 <% if (hasEntity) { %>    
     import { getExtendedEntitySelectors } from '@shared/functions/selectors-helper.functions';
     import { <%= camelize(name) %>EntityAdapter, <%= classify(name) %>PageState } from './<%= dasherize(name) %>.state';
@@ -8,8 +8,8 @@ import { <%= classify(moduleName) %>State } from '../../../../store/<%= dasheriz
 
 
 export const select<%= classify(name) %>Page = createSelector(
-    select<%= classify(moduleName) %>Module,
-    (state: <%= classify(moduleName) %>ModuleState) => state.<%= classify(name) %>Page,
+    select<%= classify(module) %>Module,
+    (state: <%= classify(module) %>ModuleState) => state.<%= classify(name) %>Page,
 );
 
 export const selectIsLoading = createSelector(

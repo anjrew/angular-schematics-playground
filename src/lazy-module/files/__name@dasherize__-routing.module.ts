@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 /* COMPONENTS */
-import { <%= classify(name) %>Component } from './__name@dasherize__.component';
+import { <%= classify(name) %>Component } from './<%= dasherize(name) %>.component';
 
 
 const routes: Routes = [

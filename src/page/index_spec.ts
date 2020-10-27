@@ -32,7 +32,7 @@ const appOptions: ApplicationOptions = {
 };
 
 const goodSchema: PageSchema = {
-  moduleName: 'good schema module',
+  module: 'good schema module',
   name: 'good schema name',
   pageType: 'filter-table',
   dataService: 'Mock data service',

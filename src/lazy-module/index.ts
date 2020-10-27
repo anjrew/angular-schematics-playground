@@ -14,20 +14,17 @@ import {
 } from '@angular-devkit/schematics';
 import { classify, dasherize, capitalize, camelize } from '@angular-devkit/core/src/utils/strings';
 import { normalize } from 'path';
-import { LazyModuleSchema } from './schema';
+import { LazyModuleOptions } from './schema';
 import { experimental } from '@angular-devkit/core';
-// import { getWorkspace } from '@schematics/angular/utility/config';
-// import { Path } from '@angular-devkit/core';
 import { parseName } from '@schematics/angular/utility/parse-name'
-import { validateRegularSchema } from '../helper-functions/helper-functions';
-// import { findModule } from '@schematics/angular/utility/find-module';
-// import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { validateRegularSchema } from '../utils/helper-functions/helper-functions';
+
 
 const stringUtils = { classify, dasherize, capitalize, camelize }
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function lazyModule(options: LazyModuleSchema): Rule {
+export function lazyModule(options: LazyModuleOptions): Rule {
 
   validateRegularSchema(options)
 
@@ -54,21 +51,18 @@ export function lazyModule(options: LazyModuleSchema): Rule {
       options.project = workspace.defaultProject as string;
     }
 
+
     const projectName = options.project as string;
-    console.log('The projectName is', projectName);
     
     const project = workspace.projects[projectName];
 
     const projectType = project.projectType === 'application' ? 'app' : 'lib';
 
     const path  = `${project.sourceRoot}/${projectType}`;
-    console.log('path', path);
     
     // const parsed = parseName(path, options.name)
-    const parsed = parseName(path, `modules/lazy-loaded-modules/${dasherize(options.name)}/components/pages/${options.name}`)
-    console.log('parsed', parsed);
+    const parsed = parseName(path, `${options.name}`)
     
-
     options.name = parsed.name;
 
     if (options.path === undefined) {

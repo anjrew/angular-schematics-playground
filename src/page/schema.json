@@ -12,7 +12,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use for the component?"
+      "x-prompt": "Name for the component?"
     },
     "path": {
       "type": "string",
@@ -33,7 +33,7 @@
         "form"
       ],
       "x-prompt": {
-        "message": "What type of page is it?",
+        "message": "Type of page is it?",
         "type": "list",
         "items": [
           { "value": "table",  "label": "Data table / List" },
@@ -49,7 +49,7 @@
         "$source": "argv",
         "index": 2
       },
-      "x-prompt": "What is the prefix to the data service?"
+      "x-prompt": "Prefix to the data service?"
     },
     "hasEntity": {
       "description": "Weather this component has an entity.",
@@ -60,20 +60,21 @@
       },
       "x-prompt": "Does the page have an entity?"
     },
-    "moduleName": {
-      "description": "The name of the module to attach to.",
+    "module": {
       "type": "string",
+      "description": "The declaring module.", 
+      "alias": "m",
       "$default": {
         "$source": "argv",
-        "index": 4
+        "index": 4,
+        "value": ""
       },
-      "x-prompt": "What is the name of the module to attach to?"
+      "x-prompt": "Declaring Module?"
     }
   },
   "required": [
     "name",
     "pageType",
-    "dataService",
-    "moduleName"
+    "dataService"
   ]
 }
