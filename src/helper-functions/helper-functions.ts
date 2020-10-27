@@ -11,7 +11,7 @@ export function validateRegularSchema(options: RegularSchema) {
     throw new SchematicsException('Option (name) is required.');
   }
 
-  if (!options.path) {
-    throw new SchematicsException('Option (path) is required.');
-  }
+  // if (!options.path) {
+  //   throw new SchematicsException('Option (path) is required.');
+  // }
 }

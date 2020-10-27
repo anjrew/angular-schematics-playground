@@ -12,7 +12,8 @@
     },
     "lazy-module": {
       "description": "Create a new Module with NGRX in the DRE style.",
-      "factory": "./lazy-module/index#lazyModule"
+      "factory": "./lazy-module/index#lazyModule",
+      "schema": "./lazy-module/schema.json"
     }
   }
 }

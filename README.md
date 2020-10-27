@@ -16,12 +16,12 @@ npm i @schematics/angular
 For a great example on how to use Schematics see this page: https://github.com/BottleRocketStudios/ng-momentum/blob/master/src/scaffold/index.ts#L217-L219 
 
 ## Create
-To create a new Schematic collection run outside a schematic folder
+To create a new Schematic collection run outside a schematic folder.
 ```bash
 schematics blank --name=hello-world
 ```
 
-To add a new Schematic to an existing collection run inside a schematic folder the same command
+To add a new Schematic to an existing collection run inside a schematic folder the same command already inside a project.
 ```bash
 schematics blank --name=hello-world
 ```
@@ -38,7 +38,12 @@ npm link
 ```
 
 Then use the schematic with the generate command.
+```bash
 ng generate dre-schematics:page 
+```
+```bash
+ng generate dre-schematics:lazy-module 
+```
 
 
 ### Testing
