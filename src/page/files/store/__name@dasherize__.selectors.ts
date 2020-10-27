@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { select<%= classify(moduleName) %>Module } from '../../../../store/<%= dasherize(moduleName) %>-module.selectors';
-import { Job<%= classify(moduleName) %>State } from '../../../../store/<%= dasherize(moduleName) %>-module.state';
+import { <%= classify(moduleName) %>State } from '../../../../store/<%= dasherize(moduleName) %>-module.state';
 <% if (hasEntity) { %>    
     import { getExtendedEntitySelectors } from '@shared/functions/selectors-helper.functions';
     import { <%= camelize(name) %>EntityAdapter, <%= classify(name) %>PageState } from './<%= dasherize(name) %>.state';
