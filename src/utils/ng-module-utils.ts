@@ -44,7 +44,7 @@ function addDeclaration(host: Tree, options: ModuleOptions) {
   const declarationChanges = addDeclarationToModule(context.source,
     modulePath, context.classifiedName, context.relativePath);
 
-    console.log(`Beginning module update`)
+  console.log(`Beginning module update`)
 
   const declarationRecorder = host.beginUpdate(modulePath);
 
@@ -72,13 +72,14 @@ function createAddToModuleContext(host: Tree, options: ModuleOptions): AddToModu
   // TODO:
   /* This needs to be the absolute path from the base of the project to the Module file */
   const modulePath = options.module;
-  
+
   // Reading the module file
   const text = host.read(modulePath as string);
 
   if (text === null) {
     throw new SchematicsException(`File ${options.module} does not exist.`);
   }
+
   const sourceText = (text || '').toString('utf-8');
 
   result.source = ts.createSourceFile(options.module, sourceText, ts.ScriptTarget.Latest, true);
@@ -104,7 +105,7 @@ function addExport(host: Tree, options: ModuleOptions) {
 
   const exportRecorder = host.beginUpdate(modulePath);
 
-for (const change of exportChanges) {
+  for (const change of exportChanges) {
     if (change instanceof InsertChange) {
       exportRecorder.insertLeft(change.pos, change.toAdd);
     }
