@@ -27,23 +27,25 @@ import { addDeclarationToNgModule } from '../utils/ng-module-utils';
 const stringUtils = { classify, dasherize, capitalize, camelize }
 
 // You don't have to export the function as default. You can also have more than one rule factory per file.
-export function page(options: PageSchema): Rule {
-
-  validateRegularSchema(options as RegularSchema)
-
+export function page(optionArgs: PageSchema): Rule {
+  console.log(`The option args are`, optionArgs)
+  
   /* Correctly format the options path */
-  options.path = options.path ? normalize(options.path) : options.path;
-  options.module = options.module || '';
-
-
+  optionArgs.path = optionArgs.path ? normalize(optionArgs.path) : optionArgs.path;
+  optionArgs.module = optionArgs.module || '';
+  
+  
   return (tree: Tree, context: SchematicContext) => {
+    
+    const options = optionArgs;
 
-
+    validateRegularSchema(options as RegularSchema)
+    
     const workspaceConfigBuffer = tree.read('angular.json');
     if (!workspaceConfigBuffer) {
       throw new SchematicsException('Could not find Angular workspace configuration');
     }
-
+    
     // convert workspace to string
     const workspaceConfigContent = workspaceConfigBuffer.toString();
 
