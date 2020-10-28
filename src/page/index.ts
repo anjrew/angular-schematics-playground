@@ -37,13 +37,13 @@ export function page(options: PageSchema): Rule {
 
 
   return (tree: Tree, context: SchematicContext) => {
-    
+
 
     const workspaceConfigBuffer = tree.read('angular.json');
     if (!workspaceConfigBuffer) {
       throw new SchematicsException('Could not find Angular workspace configuration');
     }
-    
+
     // convert workspace to string
     const workspaceConfigContent = workspaceConfigBuffer.toString();
 
@@ -54,39 +54,43 @@ export function page(options: PageSchema): Rule {
     }
 
     const projectName = options.project as string;
-    
+
     const project = workspace.projects[projectName];
 
     const projectType = project.projectType === 'application' ? 'app' : 'lib';
 
     const path = `${project.sourceRoot}/${projectType}`;
+
+    const pathParts = (options?.path || '').split('/')
+    console.log(`The path parts are,`, pathParts)
     
     const module = options.module || findModuleFromOptions(tree, options) || '';
-    
+    console.log(`the module is:`, module)
+
     // const parsed = parseName(path, options.name)
     const parsed = parseName(path, `modules/lazy-loaded-modules/${dasherize(module as string)}/components/pages/${options.name}`)
-    
+
 
     if (options.path === undefined) {
       options.path = `${project.sourceRoot}/${projectType}`;
     }
 
     const templateSource =
-    /* The apply function does the magic */
-    apply(
-      /* The source of the template files */
-      url('./files'),
-      [
-        /* Create a rule from a template */
-        template({
-          /* Pass in the utils for manipulating the strings in the template */
-          ...stringUtils,
-          /* Pass in the options to use as values in the template */
-          ...options
-        }),
-        /* Move the files to the destination */
-        move(`${parsed.path}/${parsed.name}`)
-      ])
+      /* The apply function does the magic */
+      apply(
+        /* The source of the template files */
+        url('./files'),
+        [
+          /* Create a rule from a template */
+          template({
+            /* Pass in the utils for manipulating the strings in the template */
+            ...stringUtils,
+            /* Pass in the options to use as values in the template */
+            ...options
+          }),
+          /* Move the files to the destination */
+          move(`${parsed.path}/${parsed.name}`)
+        ])
 
     /* Chain multiple rules together in sequence and the execute them to return a new tree */
     tree = chain([
