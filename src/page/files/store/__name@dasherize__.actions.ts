@@ -14,6 +14,7 @@ export const getPageData = createAction(
 
 export const receivePageData = createAction(
     get<%= classify(name) %>ActionId('receivePageData'),
+    props<{ data: any }>()
 );
 
 

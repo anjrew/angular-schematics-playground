@@ -25,7 +25,6 @@ const stringUtils = { classify, dasherize, capitalize, camelize }
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
 export function lazyModule(optionArgs: LazyModuleOptions): Rule {
-  console.log(`The option args are`, optionArgs)
 
 
   /* Correctly format the options path */

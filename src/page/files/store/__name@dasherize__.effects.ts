@@ -45,10 +45,10 @@ export class <%= classify(name) %>Effects {
                 ofType(<%= classify(name) %>Actions.getPageData),
                 withLatestFrom(this.store$.select(Selectors.selectPaginationDetails)),
                 switchMap(([, pagination]) =>
-                    this.<%= classify(dataService) %>DataService.getJobsProcessesList(pagination)
+                    this.dataService.getJobsProcessesList(pagination)
                         .pipe(
                             map(data => <%= classify(name) %>Actions.receivePageData({ data })),
-                            catchError((error: HttpErrorResponse | Error) => this.errorhandler(error, 'getData))
+                            catchError((error: HttpErrorResponse | Error) => this.errorhandler(error, 'getData'))
                         )
                 )
             )
