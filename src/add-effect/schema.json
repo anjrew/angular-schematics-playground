@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "AddEffectSchema",
+  "title": "DRE AddEffect Schema",
+  "type": "object",
+  "description": "Generates a new add-effect with NGRX sore folder",
+  "properties": {
+    "name": {
+      "description": "The name of the new component.",
+      "type": "string",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Name for the component?"
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the simple schematic within.",
+      "visible": false
+     },
+    
+    "module": {
+      "type": "string",
+      "description": "The declaring module.", 
+      "alias": "m",
+      "$default": {
+        "$source": "argv",
+        "index": 4,
+        "value": ""
+      },
+      "x-prompt": "Declaring Module?"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
