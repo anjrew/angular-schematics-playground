@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 /* NGRX */
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { <%= name.toUpperCase() %>_MODULE_STATE_KEY } from './store/<%= dasherize(name) %>-module.state';
+import { <%= classify(name.toUpperCase()) %>_MODULE_STATE_KEY } from './store/<%= dasherize(name) %>-module.state';
 import { <%= camelize(name) %>ModuleReducerMap } from './store/<%= dasherize(name) %>-module.reducer';
 import { <%= camelize(name) %>ModuleEffects } from './store/<%= dasherize(name) %>-module.effects';
 
@@ -29,7 +29,7 @@ import { <%= classify(name) %>DataService } from './services/<%= dasherize(dataS
 
         /* NGRX */
         StoreModule.forFeature(
-            <%= name.toUpperCase() %>_MODULE_STATE_KEY,
+            <%= classify(name.toUpperCase()) %>_MODULE_STATE_KEY,
             <%= camelize(name) %>ModuleReducerMap
         ),
         EffectsModule.forFeature(
